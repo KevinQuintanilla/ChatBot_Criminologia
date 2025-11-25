@@ -4,9 +4,9 @@ from typing import List, Dict, Optional
 
 # Configuración de la conexión a la base de datos
 DB_CONFIG = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': '',
+    'host': '198.59.144.192',
+    'user': 'indicado_pandillas',
+    'password': 'pandillas1928',
     'database': 'indicado_pandillas_db'
 }
 
