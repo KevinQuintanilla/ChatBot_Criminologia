@@ -1,17 +1,41 @@
+# contacto.py
 from telegram import Update
 from telegram.ext import ContextTypes
-
-# Importamos los teclados y el NUEVO estado
 from keyboards import back_keyboard, CONTACTO
+from correo import send_email
+
 
 async def start_contacto(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """Inicia el flujo de Contacto."""
-    
     await update.message.reply_text(
         "--- MÓDULO DE CONTACTO ---\n\n"
-        "Aquí pondremos un formulario para enviar un email al administrador.\n\n"
+        "Escribe el mensaje que deseas enviar al administrador.\n"
+        "Cuando termines, mándalo tal cual.\n\n"
         "Escribe 'menú' para volver.",
         reply_markup=back_keyboard()
     )
     
     return CONTACTO
+
+
+async def recibir_mensaje_contacto(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+    texto = update.message.text
+
+    if texto.lower() == "menú":
+        await update.message.reply_text("Volviendo al menú...")
+        return -1   # o el estado de tu menú principal
+
+    # Guardamos el texto
+    context.user_data["mensaje_contacto"] = texto
+
+    # ENVIAR CORREO
+    enviado = send_email(
+        asunto="Nuevo mensaje desde tu bot",
+        cuerpo=f"Mensaje del usuario {update.effective_user.username}:\n\n{texto}"
+    )
+
+    if enviado:
+        await update.message.reply_text("📨 Tu mensaje fue enviado con éxito.")
+    else:
+        await update.message.reply_text("❌ Ocurrió un error al enviar el mensaje.")
+
+    return -1
