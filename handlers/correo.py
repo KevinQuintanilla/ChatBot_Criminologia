@@ -1,11 +1,13 @@
 # correo.py
+import os
 import smtplib
 from email.mime.text import MIMEText
+from dotenv import load_dotenv
+load_dotenv()
 
-EMAIL = "villarealailton@gmail.com"
-PASSWORD = "mcmg aewv dvst zulu"
-DESTINO = "181760@upslp.edu.mx"
-
+EMAIL = os.getenv("EMAIL_USER")
+PASSWORD = os.getenv("EMAIL_PASS")
+DESTINO = os.getenv("EMAIL_DESTINO")
 
 def send_email(asunto, cuerpo):
     try:

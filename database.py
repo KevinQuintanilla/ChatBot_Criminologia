@@ -6,7 +6,7 @@ from typing import List, Dict, Optional
 DB_CONFIG = {
     'host': '198.59.144.192',
     'user': 'indicado_pandillas',
-    'password': 'pandillas1928',
+    'password': 'Pandillas1928',
     'database': 'indicado_pandillas_db'
 }
 
