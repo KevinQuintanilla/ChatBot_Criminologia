@@ -2,7 +2,7 @@
 from telegram import Update
 from telegram.ext import ContextTypes
 from keyboards import back_keyboard, CONTACTO
-from correo import send_email
+from .correo import send_email
 
 
 async def start_contacto(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
