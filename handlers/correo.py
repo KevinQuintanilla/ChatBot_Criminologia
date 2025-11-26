@@ -1,4 +1,4 @@
-# email_sender.py
+# correo.py
 import smtplib
 from email.mime.text import MIMEText
 

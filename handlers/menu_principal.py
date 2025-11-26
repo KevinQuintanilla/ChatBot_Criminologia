@@ -26,7 +26,7 @@ from .consultas import (
     handle_criterio_seleccionado
 )
 from .ayuda import start_ayuda
-from .contacto import start_contacto
+from .contacto import start_contacto, recibir_mensaje_contacto
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """
@@ -106,6 +106,7 @@ def get_main_conv_handler() -> ConversationHandler:
             ],
             CONTACTO: [
                 back_handler,
+                 MessageHandler(filters.TEXT & ~filters.COMMAND, recibir_mensaje_contacto)
             ]
         },
         fallbacks=[CommandHandler('cancel', cancel)]
