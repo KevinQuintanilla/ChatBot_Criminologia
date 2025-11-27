@@ -25,7 +25,13 @@ from .consultas import (
     handle_submenu_delito, 
     handle_criterio_seleccionado
 )
-from .ayuda import start_ayuda
+from .ayuda import (
+    start_ayuda,
+    ayuda_sobre_sistema,
+    ayuda_roles,
+    ayuda_interfaz,
+    ayuda_pandillas
+)
 from .contacto import start_contacto, recibir_mensaje_contacto
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
@@ -102,7 +108,12 @@ def get_main_conv_handler() -> ConversationHandler:
                 MessageHandler(filters.TEXT & ~filters.COMMAND, handle_criterio_seleccionado)
             ],
             AYUDA: [
-                back_handler
+                back_handler,
+                MessageHandler(filters.Regex("(?i)sobre el sistema"), ayuda_sobre_sistema),
+                MessageHandler(filters.Regex("(?i)roles"), ayuda_roles),
+                MessageHandler(filters.Regex("(?i)interfaz"), ayuda_interfaz),
+                MessageHandler(filters.Regex("(?i)pandillas"), ayuda_pandillas),
+                MessageHandler(filters.TEXT & ~filters.COMMAND, start_ayuda)
             ],
             CONTACTO: [
                 back_handler,

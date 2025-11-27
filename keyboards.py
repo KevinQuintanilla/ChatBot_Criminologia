@@ -82,3 +82,12 @@ def faltas_keyboard():
         ["Atras"]
     ]
     return ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
+
+def ayuda_menu_keyboard():
+    """Teclado para el submenú de Ayuda."""
+    keyboard = [
+        ["Sobre el Sistema", "Roles del Sistema"],
+        ["Uso de la Interfaz", "Información de Pandillas"],
+        ["Volver al Menu Principal"]
+    ]
+    return ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
