@@ -26,7 +26,7 @@ async def recibir_mensaje_contacto(update: Update, context: ContextTypes.DEFAULT
 
     # ENVIAR CORREO
     enviado = send_email(
-        asunto="Nuevo mensaje desde tu bot",
+        asunto="Mensaje solicitando ayuda",
         cuerpo=f"Mensaje del usuario {update.effective_user.username}:\n\n{texto}"
     )
 
