@@ -3,7 +3,7 @@ venv/
 *.venv/
 
 # Ignorar el archivo de secretos
-.env
+#.env
 
 # Ignorar los archivos de caché de Python
 __pycache__/
